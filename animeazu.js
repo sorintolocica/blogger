@@ -1,40 +1,26 @@
 /*
  * Arleth-desz.blogspot.com
  */
-
-// Setați numărul total de postări pe care doriți să le afișați
-var posts_no = 100;
-
-// Obțineți feed-ul blogului prin apelarea API-ului Blogger
-var script = document.createElement('script');
-script.src = 'https://www.blogger.com/feeds/5958861168810446099/posts/default?alt=json-in-script&callback=displayPosts';
-document.getElementsByTagName('head')[0].appendChild(script);
-
-function displayPosts(response) {
-  // Creați un element ul pentru a afișa lista de postări
-  var ul = document.createElement('ul');
-  ul.className = 'last-post-wrap';
-
-  // Parcurgeți fiecare postare în feed-ul blogului
+var posts_no = 9999;
+var post_rilis = true;
+function post_latest(M) {
+  document.write('<ul class="last-post-wrap">');
   for (var I = 0; I < posts_no; I++) {
-    // Opriți bucla dacă am ajuns la numărul total de postări
-    if (I >= posts_no) {
-      break;
-    }
-
-    // Obțineți detaliile postării curente
-    var z = response.feed.entry[I],
+    var j, z = M.feed.entry[I],
       E = z.title.$t;
-
-    // Căutați link-ul postării
+    if (I == M.feed.entry.length) {
+      break
+    }
     for (var y = 0; y < z.link.length; y++) {
+      if ("replies" == z.link[y].rel && "text/html" == z.link[y].type) {
+        var C = z.link[y].title,
+          B = z.link[y].href
+      }
       if ("alternate" == z.link[y].rel) {
-        var j = z.link[y].href;
-        break;
+        j = z.link[y].href;
+        break
       }
     }
-
-    // Obțineți data postării
     var F = z.published.$t,
       H = F.substring(0, 4),
       J = F.substring(5, 7),
