@@ -7,7 +7,7 @@ var posts_no = 100;
 
 // Obțineți feed-ul blogului prin apelarea API-ului Blogger
 var script = document.createElement('script');
-script.src = 'https://www.blogger.com/feeds/YOUR_BLOG_ID/posts/default?alt=json-in-script&callback=displayPosts';
+script.src = 'https://www.blogger.com/feeds/5958861168810446099/posts/default?alt=json-in-script&callback=displayPosts';
 document.getElementsByTagName('head')[0].appendChild(script);
 
 function displayPosts(response) {
